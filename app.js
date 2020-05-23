@@ -2,7 +2,7 @@ const root = document.querySelector("#root");
 
 class App extends React.Component {
   constructor() {
-   // console.log("constructor is called ==");
+    // console.log("constructor is called ==");
     super();
     this.state = {
       products: [],
@@ -11,27 +11,27 @@ class App extends React.Component {
   }
 
   componentDidMount() {
-   // console.log("componentDidMount called !!!! ");
+    // console.log("componentDidMount called !!!! ");
     Promise.all([
       axios.get("https://acme-users-api-rev.herokuapp.com/api/products"),
       axios.get("https://acme-users-api-rev.herokuapp.com/api/companies"),
     ]).then((values) => {
-     // console.log(values);
+      // console.log(values);
       //console.log(values[0].data);
       //console.log(values[1]);
       this.setState({ products: values[0].data, companies: values[1].data });
     });
 
-  //  console.log(this.state);
+    //  console.log(this.state);
   }
 
   render() {
     // console.log("render is called now ~~ ");
     // console.log(this.state);
-     const { products, companies } = this.state;
+    const { products, companies } = this.state;
 
     if (companies.length && products.length) {
-     // console.log("inside data available ==");
+      // console.log("inside data available ==");
       const header = React.createElement(Header, { companies, products });
 
       const productLi = React.createElement(
@@ -65,7 +65,7 @@ class Header extends React.Component {
 
 class CompaniesList extends React.Component {
   render() {
-  //  console.log(this.props);
+    //  console.log(this.props);
     const { companies } = this.props;
     //console.log({ companies });
     const lis = companies.map((company) =>
@@ -92,5 +92,5 @@ class ProductsList extends React.Component {
 }
 
 ReactDOM.render(React.createElement(App), root, () => {
-//  console.log("I have rendered");
+  //  console.log("I have rendered");
 });
